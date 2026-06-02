@@ -164,9 +164,8 @@
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
-/* Các khối con tự căn giữa, không bị co hẹp */
-.section > * { margin-left: auto; margin-right: auto; }
-.section > .card { width: 100%; }
+/* Lớp bọc trong: nội dung chạy theo luồng block bình thường, không bị co hẹp */
+.section-inner { width: 100%; }
 .section-title {
   font-family: "Dancing Script", cursive;
   font-size: 34px;
@@ -1175,6 +1174,68 @@
 .meter-star { color: #ddd; }
 .meter-star.on { color: #ffc24d; }
 .meter-result { color: #c94bff; font-weight: 600; }
+
+/* ============================================================
+   TRANG: VÒNG QUAY MAY MẮN
+   ============================================================ */
+.wheel-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.wheel-stage {
+  position: relative;
+  width: min(260px, 72vw); height: min(260px, 72vw);
+  margin: 0 auto 16px;
+}
+.wheel {
+  width: 100%; height: 100%; border-radius: 50%;
+  border: 6px solid #fff;
+  box-shadow: 0 12px 30px rgba(200,80,140,0.35);
+  transition: transform 4.2s cubic-bezier(.16,.84,.3,1);
+}
+.wheel-pointer {
+  position: absolute; top: -4px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 22px solid #ff4d7d;
+  z-index: 3; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+}
+.wheel-hub {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 48px; height: 48px; border-radius: 50%;
+  background: #fff; color: #ff5e8a;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2;
+}
+.wheel-result {
+  margin-top: 14px; min-height: 30px;
+  font-family: "Dancing Script", cursive; font-size: 22px;
+  color: #fff; font-weight: 600;
+  text-shadow: 0 2px 8px rgba(168,51,110,0.4);
+}
+
+/* ============================================================
+   TRANG: THIỆP CÀO
+   ============================================================ */
+.scratch-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.scratch {
+  position: relative;
+  width: min(320px, 86vw); height: 170px;
+  border-radius: 18px; overflow: hidden;
+  box-shadow: 0 12px 28px rgba(200,80,140,0.3);
+}
+.scratch-msg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; text-align: center;
+  background: linear-gradient(160deg, #fff0f6, #ffe0ee);
+}
+.scratch-msg span {
+  font-family: "Dancing Script", cursive; font-size: 24px;
+  color: #c23070; font-weight: 700; line-height: 1.3;
+}
+.scratch-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  cursor: grab; touch-action: none;
+}
 
 /* ============================================================
    RESPONSIVE

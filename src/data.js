@@ -40,6 +40,8 @@ export const PAGES = [
   { id: "mood", title: "Hôm nay thế nào?", icon: "faceNeutral" },
   { id: "compliment", title: "Lời khen mỗi ngày", icon: "sparkle" },
   { id: "heartcatch", title: "Bắt trái tim", icon: "heart" },
+  { id: "wheel", title: "Vòng quay may mắn", icon: "sparkle" },
+  { id: "scratch", title: "Thiệp cào", icon: "gift" },
   { id: "ask", title: "Một câu hỏi nhỏ", icon: "paw" },
   { id: "end", title: "Lời kết", icon: "gift" },
 ];
@@ -207,6 +209,39 @@ export const POPUP_MESSAGES = [
   "Chúc Lanh luôn vui và xinh xắn nha 🌈",
   "Có tớ luôn quý Lanh nhiều lắm 💞",
   "Mỗi ngày của Lanh đều rực rỡ như hoa 🌸",
+];
+
+// Lời khen đáng yêu hiện dưới mỗi ảnh (thay cho tên file)
+export const PHOTO_CAPTIONS = [
+  "Xinh quá đi 🌸",
+  "Khoảnh khắc đáng yêu 💕",
+  "Cười tươi ghê nha 😊",
+  "Đáng yêu hết phần người khác 🥰",
+  "Tấm này cưng xỉu 🎀",
+  "Lanh của một ngày dễ thương ☀️",
+  "Lưu lại để ngắm hoài 💖",
+  "Đẹp tự nhiên luôn á ✨",
+];
+
+// Vòng quay may mắn — phần thưởng
+export const WHEEL_PRIZES = [
+  "Một cái ôm thật chặt 🤗",
+  "Tớ bao trà sữa 🧋",
+  "Một lời khen đặc biệt 💕",
+  "Đi chơi cuối tuần 🎡",
+  "Điểm 10 đáng yêu 🌟",
+  "Một bài hát tặng Lanh 🎵",
+  "Tớ nấu cho ăn 🍳",
+  "Một điều ước nhỏ ✨",
+];
+
+// Thiệp cào — lời nhắn bí mật (cào ra mới thấy)
+export const SCRATCH_MESSAGES = [
+  "Lanh là điều dễ thương nhất của tớ 💖",
+  "Cảm ơn Lanh vì đã xuất hiện 🌷",
+  "Có Lanh, ngày nào cũng đáng yêu hơn 🌈",
+  "Tớ quý Lanh nhiều thật nhiều 💞",
+  "Lanh cười là tớ vui cả ngày 😊",
 ];
 
 // Ảnh dự phòng khi chưa có ảnh thật trong src/photos

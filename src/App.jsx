@@ -30,6 +30,8 @@ import Promises from "./components/Promises.jsx";
 import MoodCheck from "./components/MoodCheck.jsx";
 import Compliment from "./components/Compliment.jsx";
 import HeartCatch from "./components/HeartCatch.jsx";
+import LuckyWheel from "./components/LuckyWheel.jsx";
+import ScratchCard from "./components/ScratchCard.jsx";
 import QuoteCarousel from "./components/QuoteCarousel.jsx";
 import LoveQuestion from "./components/LoveQuestion.jsx";
 
@@ -53,15 +55,17 @@ function Section({ id, icon, title, subtitle, children }) {
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.55 }}
     >
-      {pageLabel && <span className="page-tag">{pageLabel}</span>}
-      {title && (
-        <h2 className="section-title">
-          {icon && <Icon name={icon} size={26} className="section-icon" />}
-          {title}
-        </h2>
-      )}
-      {subtitle && <p className="section-sub">{subtitle}</p>}
-      {children}
+      <div className="section-inner">
+        {pageLabel && <span className="page-tag">{pageLabel}</span>}
+        {title && (
+          <h2 className="section-title">
+            {icon && <Icon name={icon} size={26} className="section-icon" />}
+            {title}
+          </h2>
+        )}
+        {subtitle && <p className="section-sub">{subtitle}</p>}
+        {children}
+      </div>
     </motion.section>
   );
 }
@@ -125,7 +129,8 @@ export default function App() {
       }, 650);
     };
 
-    const inUI = (t) => t.closest(".menu-drawer, .music-pop, input, textarea");
+    const inUI = (t) =>
+      t.closest(".menu-drawer, .music-pop, input, textarea, [data-noswipe]");
     const secOf = (t) => t.closest(".hero, .section");
     const fits = (sec) =>
       sec && sec.getBoundingClientRect().height <= window.innerHeight + 8;
@@ -321,6 +326,24 @@ export default function App() {
               subtitle="Một trò chơi nhỏ cho Lanh thư giãn"
             >
               <HeartCatch />
+            </Section>
+
+            <Section
+              id="wheel"
+              icon="sparkle"
+              title="Vòng quay may mắn"
+              subtitle="Quay xem hôm nay Lanh trúng điều gì nhé"
+            >
+              <LuckyWheel />
+            </Section>
+
+            <Section
+              id="scratch"
+              icon="gift"
+              title="Thiệp cào"
+              subtitle="Lấy ngón tay cào lớp nhũ để mở lời nhắn bí mật"
+            >
+              <ScratchCard />
             </Section>
 
             {/* CÂU HỎI */}

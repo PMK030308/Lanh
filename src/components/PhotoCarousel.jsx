@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Icon from "./Icon.jsx";
-import { PLACEHOLDER_PHOTOS } from "../data.js";
+import { PLACEHOLDER_PHOTOS, PHOTO_CAPTIONS } from "../data.js";
 
 // Tự động nạp mọi ảnh đặt sẵn trong thư mục src/photos
 const modules = import.meta.glob(
@@ -84,7 +84,12 @@ export default function PhotoCarousel() {
   ];
   const hasReal = photos.length > 0;
   const list = hasReal ? photos : PLACEHOLDER_PHOTOS;
-  const photo = list[Math.min(idx, list.length - 1)] || list[0];
+  const safeIdx = Math.min(idx, list.length - 1);
+  const photo = list[safeIdx] || list[0];
+  // Ảnh thật: hiện lời khen đáng yêu (không hiện tên file để khỏi tràn viền)
+  const caption = hasReal
+    ? PHOTO_CAPTIONS[safeIdx % PHOTO_CAPTIONS.length]
+    : photo.caption;
 
   const go = (d) => {
     setDir(d);
@@ -140,7 +145,7 @@ export default function PhotoCarousel() {
           >
             {hasReal ? (
               <div className="polaroid-photo">
-                <img src={photo.src} alt={photo.caption} loading="lazy" />
+                <img src={photo.src} alt={caption} loading="lazy" />
                 {photo.kind === "upload" && (
                   <button
                     className="photo-del"
@@ -162,7 +167,7 @@ export default function PhotoCarousel() {
                 <Icon name={photo.icon} size={56} className="polaroid-emoji" />
               </div>
             )}
-            <p className="polaroid-caption">{photo.caption}</p>
+            <p className="polaroid-caption">{caption}</p>
           </motion.div>
         </AnimatePresence>
       </div>
