@@ -1,0 +1,15 @@
+📸 THƯ MỤC ẢNH CỦA LANH
+
+Cứ bỏ ảnh vào thư mục này là web TỰ ĐỘNG hiện lên trong album,
+không cần sửa code gì cả.
+
+- Định dạng hỗ trợ: .jpg .jpeg .png .webp .gif
+- Đặt tên file thế nào cũng được. Tên file (bỏ phần đuôi)
+  sẽ được dùng làm chú thích bên dưới ảnh.
+  Ví dụ:  "Đi chơi công viên.jpg"  ->  chú thích: "Đi chơi công viên"
+- Thêm bao nhiêu ảnh cũng được, album sẽ tự có thêm trang.
+
+Khi chưa có ảnh nào, web sẽ hiện vài khung màu dễ thương tạm thời.
+
+(Nếu đang chạy "npm run dev", chỉ cần lưu ảnh vào đây là trang
+ tự cập nhật ngay, khỏi tải lại.)

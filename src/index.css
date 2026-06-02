@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  font-family: "Quicksand", sans-serif;
+  background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 40%, #c9a7eb 100%);
+  background-size: 400% 400%;
+  animation: gradientMove 14s ease infinite;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
