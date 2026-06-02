@@ -6,11 +6,12 @@ export const ME = "tớ";          // người viết tự xưng
 
 // Danh sách nhạc nền (file đặt trong thư mục public/).
 // Bài đầu sẽ tự phát; hết bài sẽ tự sang bài kế. Sửa "title" cho đẹp tuỳ ý.
+// file: tên file trong public/ (không có dấu "/" đầu — sẽ tự ghép base URL)
 export const TRACKS = [
-  { file: "/aingaoianh.mp3", title: "Ai Ngại Ngùng Anh" },
-  { file: "/Mattroicuaem.mp3", title: "Mặt Trời Của Em" },
-  { file: "/1thanh2.mp3", title: "1 Thành 2" },
-  { file: "/votay.mp3", title: "Vỗ Tay" },
+  { file: "aingaoianh.mp3", title: "Ai Ngại Ngùng Anh" },
+  { file: "Mattroicuaem.mp3", title: "Mặt Trời Của Em" },
+  { file: "1thanh2.mp3", title: "1 Thành 2" },
+  { file: "votay.mp3", title: "Vỗ Tay" },
 ];
 
 // Ngày "ngưng làm bạn" — bắt đầu đếm (năm, tháng 0-11, ngày)

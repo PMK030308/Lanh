@@ -157,13 +157,16 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   text-align: center;
   padding: 78px 0 64px;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
+/* Các khối con tự căn giữa, không bị co hẹp */
+.section > * { margin-left: auto; margin-right: auto; }
+.section > .card { width: 100%; }
 .section-title {
   font-family: "Dancing Script", cursive;
   font-size: 34px;

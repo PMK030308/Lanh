@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import FloatingHearts from "./components/FloatingHearts.jsx";
@@ -87,6 +87,88 @@ export default function App() {
     heartConfetti();
     showRandomMessage();
   };
+
+  // Vuốt 1 lần = qua đúng 1 trang (cho các trang vừa 1 màn hình).
+  // Trang nội dung dài hơn màn hình thì cho cuộn đọc tự nhiên.
+  useEffect(() => {
+    if (!opened) return;
+
+    const getSecs = () =>
+      [
+        document.getElementById("cover"),
+        ...document.querySelectorAll(".section"),
+      ].filter(Boolean);
+    const topOf = (el) => el.getBoundingClientRect().top + window.scrollY;
+    const nearest = () => {
+      const ss = getSecs();
+      const y = window.scrollY;
+      let best = 0,
+        bd = Infinity;
+      ss.forEach((s, i) => {
+        const d = Math.abs(topOf(s) - y);
+        if (d < bd) {
+          bd = d;
+          best = i;
+        }
+      });
+      return best;
+    };
+
+    let locked = false;
+    const goTo = (i) => {
+      const ss = getSecs();
+      i = Math.max(0, Math.min(ss.length - 1, i));
+      locked = true;
+      window.scrollTo({ top: topOf(ss[i]), behavior: "smooth" });
+      setTimeout(() => {
+        locked = false;
+      }, 650);
+    };
+
+    const inUI = (t) => t.closest(".menu-drawer, .music-pop, input, textarea");
+    const secOf = (t) => t.closest(".hero, .section");
+    const fits = (sec) =>
+      sec && sec.getBoundingClientRect().height <= window.innerHeight + 8;
+
+    const onWheel = (e) => {
+      if (inUI(e.target)) return;
+      if (!fits(secOf(e.target))) return; // trang dài: cuộn tự nhiên
+      e.preventDefault();
+      if (locked) return;
+      goTo(nearest() + (e.deltaY > 0 ? 1 : -1));
+    };
+
+    let engaged = false;
+    let startY = 0;
+    const onTouchStart = (e) => {
+      if (inUI(e.target)) {
+        engaged = false;
+        return;
+      }
+      engaged = fits(secOf(e.target));
+      startY = e.touches[0].clientY;
+    };
+    const onTouchMove = (e) => {
+      if (engaged) e.preventDefault(); // chặn cuộn trôi trên trang vừa màn hình
+    };
+    const onTouchEnd = (e) => {
+      if (!engaged || locked) return;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dy) < 45) return;
+      goTo(nearest() + (dy < 0 ? 1 : -1));
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [opened]);
 
   return (
     <>

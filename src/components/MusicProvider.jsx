@@ -4,6 +4,9 @@ import { TRACKS } from "../data.js";
 const MusicContext = createContext(null);
 export const useMusic = () => useContext(MusicContext);
 
+// Ghép base URL (vd "/Lanh/") để nhạc chạy đúng cả khi deploy lên GitHub Pages
+const srcOf = (file) => import.meta.env.BASE_URL + file;
+
 // Quản lý một thẻ <audio> duy nhất cho cả trang.
 // Tự phát bài đầu, hết bài tự sang bài kế, vòng lại từ đầu.
 export function MusicProvider({ children }) {
@@ -17,12 +20,12 @@ export function MusicProvider({ children }) {
     if (!a) return;
     indexRef.current = i;
     setIndex(i);
-    a.src = TRACKS[i].file;
+    a.src = srcOf(TRACKS[i].file);
     a.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
   };
 
   useEffect(() => {
-    const a = new Audio(TRACKS[0].file);
+    const a = new Audio(srcOf(TRACKS[0].file));
     a.volume = 0.5;
     audioRef.current = a;
 
