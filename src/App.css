@@ -145,12 +145,22 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  scroll-snap-align: start;
 }
+/* Mỗi trang = một màn hình đầy đủ, căn giữa nội dung, có điểm snap */
 .section {
   width: 100%;
   max-width: 560px;
-  margin: 56px auto 0;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  padding: 78px 0 64px;
+  scroll-snap-align: start;
 }
 .section-title {
   font-family: "Dancing Script", cursive;
@@ -1167,15 +1177,14 @@
 
 /* Tablet */
 @media (max-width: 768px) {
-  .section { margin-top: 44px; }
   .section-title { font-size: 30px; }
   .name { font-size: 48px; }
 }
 
 /* Điện thoại */
 @media (max-width: 600px) {
-  .page { padding: 0 12px 60px; }
-  .section { margin-top: 40px; }
+  .page { padding: 0 12px 40px; }
+  .section { padding: 70px 0 56px; }
   .section-title { font-size: 26px; margin-bottom: 18px; }
 
   .card { padding: 30px 20px; border-radius: 26px; }
