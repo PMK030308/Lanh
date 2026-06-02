@@ -146,6 +146,7 @@
   justify-content: center;
   width: 100%;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 /* Mỗi trang = một màn hình đầy đủ, căn giữa nội dung, có điểm snap */
 .section {
@@ -161,6 +162,7 @@
   text-align: center;
   padding: 78px 0 64px;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 .section-title {
   font-family: "Dancing Script", cursive;
